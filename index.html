@@ -67,7 +67,7 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      inset: 38px 0 auto 0;
+      inset: 0 0 auto 0;
       z-index: 100;
       display: flex;
       align-items: center;
@@ -816,33 +816,6 @@
 </head>
 <body>
 
-<!-- ─── TOP BANNER ─── -->
-<style>
-  .top-ticker { position:sticky; top:0; z-index:200; background:#E07010; color:#fff; overflow:hidden; white-space:nowrap; height:38px; display:flex; align-items:center; font-size:12.5px; font-family:'Inter',sans-serif; letter-spacing:0.01em; }
-  .ticker-track { display:inline-flex; align-items:center; gap:0; animation:ticker 35s linear infinite; }
-  .ticker-track:hover { animation-play-state:paused; }
-  .ticker-sep { color:rgba(255,255,255,0.30); margin:0 18px; }
-  .ticker-track strong { color:#fff; font-weight:600; }
-  @keyframes ticker { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
-</style>
-<div class="top-ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>🏆 Primeiro co-piloto de IA do Nordeste</span><span class="ticker-sep">•</span>
-    <span>Funciona no <strong>WhatsApp que você já usa</strong></span><span class="ticker-sep">•</span>
-    <span>Sem instalação <strong>adicional</strong></span><span class="ticker-sep">•</span>
-    <span>Cancele <strong>quando quiser</strong></span><span class="ticker-sep">•</span>
-    <span>Promoção até <strong>30 de junho</strong> — 1º mês por <strong>R$&nbsp;14,99</strong></span><span class="ticker-sep">•</span>
-    <span>Dados reais: <strong>FipeZAP · IVAR · Banco Central · CBIC</strong></span><span class="ticker-sep">•</span>
-    <span>🏆 Primeiro co-piloto de IA do Nordeste</span><span class="ticker-sep">•</span>
-    <span>Funciona no <strong>WhatsApp que você já usa</strong></span><span class="ticker-sep">•</span>
-    <span>Sem instalação <strong>adicional</strong></span><span class="ticker-sep">•</span>
-    <span>Cancele <strong>quando quiser</strong></span><span class="ticker-sep">•</span>
-    <span>Promoção até <strong>30 de junho</strong> — 1º mês por <strong>R$&nbsp;14,99</strong></span><span class="ticker-sep">•</span>
-    <span>Dados reais: <strong>FipeZAP · IVAR · Banco Central · CBIC</strong></span><span class="ticker-sep">•</span>
-  </div>
-</div>
-
-<!-- ─── NAV ─── -->
 <nav>
   <a href="https://myasset.tech" class="nav-logo">My<b>Market</b></a>
   <ul class="nav-links">
@@ -853,6 +826,33 @@
   <button class="nav-btn" onclick="openPromo()">Quero entrar →</button>
 </nav>
 
+<!-- ─── PROMO TICKER ─── -->
+<style>
+  .promo-ticker { margin-top: 71px; background:#E07010; color:#fff; overflow:hidden; white-space:nowrap; height:38px; display:flex; align-items:center; font-size:12.5px; font-family:'Inter',sans-serif; letter-spacing:0.01em; }
+  .promo-track { display:inline-flex; align-items:center; gap:0; animation:promoScroll 28s linear infinite; }
+  .promo-track:hover { animation-play-state:paused; }
+  .promo-sep { color:rgba(255,255,255,0.35); margin:0 22px; }
+  .promo-track strong { color:#fff; font-weight:700; }
+  @keyframes promoScroll { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+</style>
+<div class="promo-ticker" aria-hidden="true">
+  <div class="promo-track">
+    <span>🏆 Primeiro co-piloto de IA do Nordeste</span><span class="promo-sep">•</span>
+    <span>Promoção de lançamento</span><span class="promo-sep">•</span>
+    <span>Disponível até <strong>30 de junho</strong></span><span class="promo-sep">•</span>
+    <span>1º mês por <strong>R</nav>
+
+
+<!-- ─── HERO ─── -->nbsp;14,99</strong></span><span class="promo-sep">•</span>
+    <span>🏆 Primeiro co-piloto de IA do Nordeste</span><span class="promo-sep">•</span>
+    <span>Promoção de lançamento</span><span class="promo-sep">•</span>
+    <span>Disponível até <strong>30 de junho</strong></span><span class="promo-sep">•</span>
+    <span>1º mês por <strong>R</nav>
+
+
+<!-- ─── HERO ─── -->nbsp;14,99</strong></span><span class="promo-sep">•</span>
+  </div>
+</div>
 
 <!-- ─── HERO ─── -->
 <section id="hero">
