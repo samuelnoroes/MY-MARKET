@@ -817,8 +817,29 @@
 <body>
 
 <!-- ─── TOP BANNER ─── -->
-<div style="background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.4;">
-  🏆 Primeiro co-piloto de IA para corretores do Nordeste &nbsp;·&nbsp; Promoção de lançamento &nbsp;·&nbsp; Disponível até <span style="text-decoration:underline;text-underline-offset:3px;">30 de junho</span>
+<style>
+  .top-ticker { background:#1A1820; color:rgba(255,255,255,0.80); overflow:hidden; white-space:nowrap; height:38px; display:flex; align-items:center; font-size:12.5px; font-family:'Inter',sans-serif; letter-spacing:0.01em; }
+  .ticker-track { display:inline-flex; align-items:center; gap:0; animation:ticker 35s linear infinite; }
+  .ticker-track:hover { animation-play-state:paused; }
+  .ticker-sep { color:rgba(255,255,255,0.30); margin:0 18px; }
+  .ticker-track strong { color:#fff; font-weight:600; }
+  @keyframes ticker { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+</style>
+<div class="top-ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>🏆 Primeiro co-piloto de IA do Nordeste</span><span class="ticker-sep">•</span>
+    <span>Funciona no <strong>WhatsApp que você já usa</strong></span><span class="ticker-sep">•</span>
+    <span>Sem instalação <strong>adicional</strong></span><span class="ticker-sep">•</span>
+    <span>Cancele <strong>quando quiser</strong></span><span class="ticker-sep">•</span>
+    <span>Promoção até <strong>30 de junho</strong> — 1º mês por <strong>R$&nbsp;14,99</strong></span><span class="ticker-sep">•</span>
+    <span>Dados reais: <strong>FipeZAP · IVAR · Banco Central · CBIC</strong></span><span class="ticker-sep">•</span>
+    <span>🏆 Primeiro co-piloto de IA do Nordeste</span><span class="ticker-sep">•</span>
+    <span>Funciona no <strong>WhatsApp que você já usa</strong></span><span class="ticker-sep">•</span>
+    <span>Sem instalação <strong>adicional</strong></span><span class="ticker-sep">•</span>
+    <span>Cancele <strong>quando quiser</strong></span><span class="ticker-sep">•</span>
+    <span>Promoção até <strong>30 de junho</strong> — 1º mês por <strong>R$&nbsp;14,99</strong></span><span class="ticker-sep">•</span>
+    <span>Dados reais: <strong>FipeZAP · IVAR · Banco Central · CBIC</strong></span><span class="ticker-sep">•</span>
+  </div>
 </div>
 
 <!-- ─── NAV ─── -->
