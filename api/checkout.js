@@ -6,6 +6,7 @@ module.exports = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
+      payment_method_types: ['card'],
       line_items: [
         { price: 'price_1Tj0OMCpMCWdzTTOQGarlgSz', quantity: 1 },
       ],
