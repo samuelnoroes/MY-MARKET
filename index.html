@@ -816,6 +816,11 @@
 </head>
 <body>
 
+<!-- ─── TOP BANNER ─── -->
+<div style="background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.4;">
+  🏆 Primeiro co-piloto de IA para corretores do Nordeste &nbsp;·&nbsp; Promoção de lançamento &nbsp;·&nbsp; Disponível até <span style="text-decoration:underline;text-underline-offset:3px;">30 de junho</span>
+</div>
+
 <!-- ─── NAV ─── -->
 <nav>
   <a href="https://myasset.tech" class="nav-logo">My<b>Market</b></a>
@@ -1479,7 +1484,8 @@
     ];
     var current = 0;
     var started = false;
-    var CYCLE_DURATION = 10000;
+    // Duração por conversa baseada na quantidade de caracteres (4–7s)
+    var CYCLE_DURATIONS = [7000, 4500, 6000];
 
     function clearConv(idx) {
       var ids = ['m1','t','m2','m3'];
@@ -1512,7 +1518,7 @@
         clearConv(idx);
         current = (current + 1) % convs.length;
         playConv(current);
-      }, CYCLE_DURATION);
+      }, CYCLE_DURATIONS[idx]);
     }
 
     // Start when hero visible
