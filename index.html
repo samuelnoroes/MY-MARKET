@@ -67,7 +67,7 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      inset: 0 0 auto 0;
+      inset: 38px 0 auto 0;
       z-index: 100;
       display: flex;
       align-items: center;
@@ -818,7 +818,7 @@
 
 <!-- ─── TOP BANNER ─── -->
 <style>
-  .top-ticker { background:#E07010; color:#fff; overflow:hidden; white-space:nowrap; height:38px; display:flex; align-items:center; font-size:12.5px; font-family:'Inter',sans-serif; letter-spacing:0.01em; }
+  .top-ticker { position:sticky; top:0; z-index:200; background:#E07010; color:#fff; overflow:hidden; white-space:nowrap; height:38px; display:flex; align-items:center; font-size:12.5px; font-family:'Inter',sans-serif; letter-spacing:0.01em; }
   .ticker-track { display:inline-flex; align-items:center; gap:0; animation:ticker 35s linear infinite; }
   .ticker-track:hover { animation-play-state:paused; }
   .ticker-sep { color:rgba(255,255,255,0.30); margin:0 18px; }
