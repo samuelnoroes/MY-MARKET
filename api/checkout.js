@@ -7,6 +7,11 @@ module.exports = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
       payment_method_types: ['card'],
+      custom_text: {
+        submit: {
+          message: 'Aceitamos cartão de crédito e débito. Ao confirmar, você autoriza a cobrança mensal automática no cartão informado.',
+        },
+      },
       line_items: [
         { price: 'price_1Tj0OMCpMCWdzTTOQGarlgSz', quantity: 1 },
       ],
