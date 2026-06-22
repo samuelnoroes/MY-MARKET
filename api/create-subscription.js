@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 
     const subParams = {
       customer: customer.id,
-      items: [{ price: 'price_1Tj0OMCpMCWdzTTOQGarlgSz' }],
+      items: [{ price: process.env.STRIPE_PRICE_ID || 'price_1Tj0OMCpMCWdzTTOQGarlgSz' }],
       payment_behavior: 'default_incomplete',
       payment_settings: {
         payment_method_types: ['card'],
