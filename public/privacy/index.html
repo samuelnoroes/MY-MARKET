@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — MyMarket</title>
+<meta name="description" content="Política de Privacidade do MyMarket — como coletamos, usamos e protegemos seus dados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #F6F4F0;
+    --bg-alt:       #EFECEA;
+    --bg-card:      #FFFFFF;
+    --border:       rgba(0,0,0,0.08);
+    --text:         #1A1820;
+    --text-dim:     #5A5775;
+    --text-muted:   #9593AB;
+    --accent:       #C97D20;
+    --accent-light: #E29535;
+    --accent-dim:   rgba(201,125,32,0.10);
+    --radius:       14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.125rem 2rem;
+    background: rgba(246,244,240,0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1875rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .nav-logo:hover { text-decoration: none; }
+  .nav-logo b { color: var(--accent); }
+  .nav-back {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dim);
+  }
+  header.hero {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2.5rem;
+  }
+  .eyebrow {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .updated { font-size: 0.875rem; color: var(--text-muted); }
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+  section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.875rem 2rem;
+    margin-bottom: 1.25rem;
+  }
+  h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.875rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+  }
+  h2 .n { color: var(--accent); font-weight: 700; }
+  p, li { font-size: 0.9375rem; color: var(--text-dim); }
+  p + p { margin-top: 0.75rem; }
+  ul { padding-left: 1.25rem; margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  strong { color: var(--text); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+  th, td { text-align: left; padding: 0.5rem 0.625rem; border-bottom: 1px solid var(--border); font-size: 0.875rem; vertical-align: top; }
+  th { color: var(--text-muted); font-weight: 600; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid rgba(201,125,32,0.3);
+    border-radius: 20px;
+    padding: 0.2rem 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+  footer {
+    background: #1A1820;
+    padding: 1.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  footer a { color: rgba(255,255,255,0.55); }
+  @media (max-width: 600px) {
+    section { padding: 1.5rem; }
+    header.hero { padding: 2.5rem 1.25rem 1.5rem; }
+    main { padding: 0 1.25rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://mymarket.myasset.tech" class="nav-logo">My<b>Market</b></a>
+  <a href="https://mymarket.myasset.tech" class="nav-back">← Voltar ao site</a>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">Legal</span>
+  <h1>Política de Privacidade</h1>
+  <p class="updated">Última atualização: 1 de julho de 2026</p>
+</header>
+
+<main>
+
+  <section id="intro">
+    <span class="badge">Controlador de dados</span>
+    <p>Esta Política de Privacidade descreve como o <strong>MyMarket</strong>, produto operado por <strong>NORÕES</strong> ("nós", "nosso"), coleta, usa, armazena e protege os dados pessoais de corretores de imóveis e demais usuários ("você") que utilizam nosso assistente via WhatsApp e nossa plataforma web.</p>
+    <p>O MyMarket é um co-piloto de inteligência artificial para corretores de imóveis, acessível pelo WhatsApp, que fornece dados de mercado, simulação de financiamento, orientação de contrato e tributação, e demais automações relacionadas à atividade do corretor.</p>
+    <p>Esta política está em conformidade com a Lei Geral de Proteção de Dados Pessoais brasileira (LGPD — Lei nº 13.709/2018).</p>
+  </section>
+
+  <section id="dados-coletados">
+    <h2><span class="n">1.</span>Quais dados coletamos</h2>
+    <table>
+      <tr><th>Categoria</th><th>Exemplos</th></tr>
+      <tr><td>Dados de cadastro</td><td>Nome, número de WhatsApp, cidade/UF de atuação, plano contratado</td></tr>
+      <tr><td>Conteúdo das conversas</td><td>Mensagens trocadas com o assistente via WhatsApp, incluindo perguntas e respostas</td></tr>
+      <tr><td>Dados de uso</td><td>Histórico de interações, contadores de uso, data/hora das mensagens</td></tr>
+      <tr><td>Dados de cobrança</td><td>Status de assinatura e pagamento (processados por Stripe — não armazenamos dados completos de cartão)</td></tr>
+    </table>
+  </section>
+
+  <section id="uso-dados">
+    <h2><span class="n">2.</span>Como usamos seus dados</h2>
+    <ul>
+      <li>Para operar e responder às suas mensagens no WhatsApp através do assistente MyMarket;</li>
+      <li>Para manter um histórico de contexto e melhorar a qualidade das respostas fornecidas;</li>
+      <li>Para verificar seu cadastro, plano contratado e aplicar limites de uso;</li>
+      <li>Para processar cobranças e gerenciar sua assinatura;</li>
+      <li>Para cumprir obrigações legais e prevenir fraude ou uso indevido da plataforma.</li>
+    </ul>
+    <p>Não utilizamos seus dados para fins de publicidade de terceiros, nem os vendemos a terceiros.</p>
+  </section>
+
+  <section id="compartilhamento">
+    <h2><span class="n">3.</span>Compartilhamento de dados</h2>
+    <p>Para operar o serviço, compartilhamos dados estritamente necessários com os seguintes provedores (operadores, nos termos da LGPD):</p>
+    <ul>
+      <li><strong>Meta / WhatsApp Business Platform</strong> — envio e recebimento de mensagens;</li>
+      <li><strong>Anthropic (Claude)</strong> — processamento de linguagem natural para gerar respostas;</li>
+      <li><strong>Supabase</strong> — armazenamento de banco de dados (mensagens, cadastro, base de conhecimento);</li>
+      <li><strong>Stripe</strong> — processamento de pagamentos e cobranças;</li>
+      <li><strong>Vercel</strong> — hospedagem da nossa página web.</li>
+    </ul>
+    <p>Não compartilhamos seus dados pessoais com terceiros para fins de marketing sem o seu consentimento explícito.</p>
+  </section>
+
+  <section id="retencao">
+    <h2><span class="n">4.</span>Retenção de dados</h2>
+    <p>Mantemos seus dados de cadastro e histórico de conversas pelo tempo necessário para prestação do serviço e cumprimento de obrigações legais e regulatórias. Dados de cobrança são retidos conforme exigido pela legislação fiscal brasileira.</p>
+  </section>
+
+  <section id="seus-direitos">
+    <h2><span class="n">5.</span>Seus direitos (LGPD)</h2>
+    <p>Você pode, a qualquer momento, solicitar:</p>
+    <ul>
+      <li>Confirmação da existência de tratamento de dados;</li>
+      <li>Acesso aos seus dados pessoais;</li>
+      <li>Correção de dados incompletos, inexatos ou desatualizados;</li>
+      <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade com a LGPD;</li>
+      <li><strong>Eliminação completa dos seus dados pessoais</strong> (ver seção 6 — Exclusão de dados);</li>
+      <li>Revogação do consentimento, quando aplicável.</li>
+    </ul>
+  </section>
+
+  <section id="exclusao-dados">
+    <h2><span class="n">6.</span>Como solicitar a exclusão dos seus dados</h2>
+    <p>Para solicitar a exclusão completa da sua conta e de todos os dados pessoais associados (cadastro, histórico de mensagens e dados de uso), envie uma mensagem de "Excluir meus dados" diretamente para o número do MyMarket no WhatsApp, ou entre em contato pelo e-mail abaixo informando o número de WhatsApp cadastrado:</p>
+    <p><a href="mailto:samuel.noroes@gmail.com">samuel.noroes@gmail.com</a></p>
+    <p>Processaremos sua solicitação em até 15 dias corridos e enviaremos confirmação por e-mail ou WhatsApp assim que a exclusão for concluída.</p>
+  </section>
+
+  <section id="seguranca">
+    <h2><span class="n">7.</span>Segurança</h2>
+    <p>Adotamos medidas técnicas e administrativas para proteger seus dados pessoais contra acessos não autorizados e situações de destruição, perda, alteração, comunicação ou qualquer forma de tratamento inadequado, incluindo controle de acesso por permissões (RLS), criptografia em trânsito e revisão periódica de credenciais.</p>
+  </section>
+
+  <section id="menores">
+    <h2><span class="n">8.</span>Menores de idade</h2>
+    <p>O MyMarket é destinado a corretores de imóveis e profissionais do mercado imobiliário. Não direcionamos nossos serviços a menores de 18 anos e não coletamos intencionalmente dados de menores.</p>
+  </section>
+
+  <section id="alteracoes">
+    <h2><span class="n">9.</span>Alterações a esta política</h2>
+    <p>Podemos atualizar esta Política de Privacidade periodicamente. A data da última atualização está indicada no topo desta página. Alterações significativas serão comunicadas aos usuários cadastrados.</p>
+  </section>
+
+  <section id="contato">
+    <h2><span class="n">10.</span>Contato</h2>
+    <p>Dúvidas sobre esta política ou sobre o tratamento dos seus dados podem ser enviadas para: <a href="mailto:samuel.noroes@gmail.com">samuel.noroes@gmail.com</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <a href="https://mymarket.myasset.tech">MyMarket · MyAsset</a>
+  <span>© 2026 MyAsset</span>
+</footer>
+
+</body>
+</html>
