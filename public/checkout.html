@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — MyMarket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    :root {
+      --bg:           #F6F4F0;
+      --text:         #1A1820;
+      --text-dim:     #5A5775;
+      --text-muted:   #9593AB;
+      --accent:       #C97D20;
+      --accent-light: #E29535;
+      --accent-dim:   rgba(201,125,32,0.10);
+      --border:       rgba(0,0,0,0.09);
+      --radius:       14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.07);
+    }
+
+    /* ── Logo ── */
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1875rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+    .logo b { color: var(--accent); }
+
+    /* ── Step header ── */
+    .step-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.375rem;
+    }
+    .step-sub {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 1.75rem;
+    }
+    .step-sub strong { color: var(--accent); font-weight: 600; }
+
+    /* ── Progress ── */
+    .progress {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .progress-dot {
+      height: 3px;
+      flex: 1;
+      border-radius: 2px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .progress-dot.active { background: var(--accent); }
+
+    /* ── Fields ── */
+    .field { margin-bottom: 1rem; }
+    label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      margin-bottom: 0.375rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(201,125,32,0.1);
+    }
+    input[type="text"]::placeholder { color: var(--text-muted); }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+    }
+
+    /* ── Payment section label ── */
+    .pay-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Payment Element container ── */
+    #payment-element { min-height: 100px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.9375rem;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 1.5rem;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover:not(:disabled) { background: var(--accent-light); }
+
+    /* ── Error ── */
+    .error {
+      margin-top: 0.875rem;
+      font-size: 0.875rem;
+      color: #c0392b;
+      background: rgba(192,57,43,0.06);
+      border: 1px solid rgba(192,57,43,0.15);
+      border-radius: 8px;
+      padding: 0.625rem 0.875rem;
+      display: none;
+      line-height: 1.5;
+    }
+
+    /* ── Fine print ── */
+    .fine {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.65;
+    }
+    .fine a { color: var(--text-muted); text-decoration: underline; }
+
+    /* ── Payment method badges ── */
+    .pay-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .pay-badge {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      background: #F3F3F1;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.625rem;
+    }
+
+    /* ── Step transitions ── */
+    #step2 { display: none; }
+    #step2.show { display: block; }
+
+    /* ── Loading dots ── */
+    @keyframes dots {
+      0%   { content: '.'; }
+      33%  { content: '..'; }
+      66%  { content: '...'; }
+      100% { content: '.'; }
+    }
+    .ldots::after {
+      content: '.';
+      animation: dots 1s infinite;
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+    .back-link:hover { color: var(--text); }
+
+    @media (max-width: 520px) {
+      .card { padding: 1.75rem 1.25rem; border-radius: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">My<b>Market</b></div>
+
+  <!-- ── STEP 1: Dados pessoais ── -->
+  <div id="step1">
+    <div class="progress">
+      <div class="progress-dot active" id="dot1"></div>
+      <div class="progress-dot" id="dot2"></div>
+    </div>
+
+    <h2 class="step-title">Seus dados</h2>
+    <p class="step-sub" id="sub1">Preencha para ativar o acesso ao MyMarket.</p>
+
+    <div class="field">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" placeholder="Seu nome" autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="whatsapp">WhatsApp (com DDD)</label>
+      <input type="text" id="whatsapp" placeholder="(85) 99999-9999" autocomplete="tel" inputmode="tel">
+    </div>
+    <div class="field">
+      <label for="imobiliaria">Imobiliária · Cidade / UF</label>
+      <input type="text" id="imobiliaria" placeholder="Ex: Alpha Imóveis · Fortaleza / CE">
+    </div>
+
+    <button class="btn btn-primary" id="btnContinuar" onclick="continuar()">Continuar →</button>
+    <div class="error" id="err1"></div>
+    <p class="fine">Ao continuar você concorda com os nossos termos de uso.<br>Cancele quando quiser · Sem multa.</p>
+  </div>
+
+  <!-- ── STEP 2: Pagamento ── -->
+  <div id="step2">
+    <button class="back-link" onclick="voltarStep1()">← Voltar</button>
+
+    <div class="progress">
+      <div class="progress-dot active"></div>
+      <div class="progress-dot active"></div>
+    </div>
+
+    <h2 class="step-title">Pagamento</h2>
+    <p class="step-sub" id="sub2">Escolha a forma de pagamento.</p>
+
+    <div class="pay-badges">
+      <span class="pay-badge">💳 Cartão de crédito ou débito</span>
+    </div>
+
+    <div id="payment-element"></div>
+
+    <button class="btn btn-primary" id="btnPagar" onclick="pagar()">Confirmar assinatura</button>
+    <div class="error" id="err2"></div>
+    <p class="fine" id="fine2">
+      A cobrança mensal será feita automaticamente no cartão informado.
+    </p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const coupon = params.get('coupon') || '';
+
+  // Ajusta textos conforme cupom
+  if (coupon === 'PROMO1MES') {
+    document.getElementById('sub1').innerHTML =
+      '1º mês por <strong>R$ 14,99</strong> · A partir do 2º mês R$ 29,90.';
+    document.getElementById('sub2').innerHTML =
+      '1º mês por <strong>R$ 14,99</strong>. A partir do 2º mês, R$ 29,90/mês.';
+  }
+
+  let stripe = null;
+  let elements = null;
+
+  // Busca publishable key assim que a página carrega
+  fetch('/api/config')
+    .then(r => r.json())
+    .then(({ publishableKey }) => {
+      stripe = Stripe(publishableKey);
+    })
+    .catch(() => {
+      showErr(document.getElementById('err1'), 'Erro ao carregar configuração. Recarregue a página.');
+    });
+
+  // ── Step 1: continuar ──
+  window.continuar = async function () {
+    const nome = document.getElementById('nome').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const imobiliaria = document.getElementById('imobiliaria').value.trim();
+    const errEl = document.getElementById('err1');
+    const btn = document.getElementById('btnContinuar');
+
+    hideErr(errEl);
+
+    if (!nome)      return showErr(errEl, 'Informe seu nome completo.');
+    if (!whatsapp)  return showErr(errEl, 'Informe seu WhatsApp com DDD.');
+    if (!stripe)    return showErr(errEl, 'Aguarde a página carregar e tente novamente.');
+
+    setLoading(btn, true, 'Processando<span class="ldots"></span>');
+
+    try {
+      const res = await fetch('/api/create-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, whatsapp, imobiliaria_cidade: imobiliaria, coupon }),
+      });
+      const data = await res.json();
+
+      if (data.error) {
+        setLoading(btn, false, 'Continuar →');
+        return showErr(errEl, data.error);
+      }
+
+      // Monta Payment Element com o clientSecret
+      elements = stripe.elements({ clientSecret: data.clientSecret });
+      const pe = elements.create('payment', {
+        layout: 'tabs',
+        defaultValues: { billingDetails: { name: nome } },
+      });
+
+      document.getElementById('payment-element').innerHTML = '';
+      pe.mount('#payment-element');
+
+      // Transição para step 2
+      document.getElementById('step1').style.display = 'none';
+      const s2 = document.getElementById('step2');
+      s2.style.display = 'block';
+      s2.classList.add('show');
+
+    } catch (e) {
+      console.error(e);
+      setLoading(btn, false, 'Continuar →');
+      showErr(errEl, 'Erro de conexão. Verifique sua internet e tente novamente.');
+    }
+  };
+
+  // ── Step 2: pagar ──
+  window.pagar = async function () {
+    const errEl = document.getElementById('err2');
+    const btn = document.getElementById('btnPagar');
+
+    hideErr(errEl);
+    setLoading(btn, true, 'Processando<span class="ldots"></span>');
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: 'https://mymarket.myasset.tech/obrigado',
+      },
+    });
+
+    // Só chega aqui se houver erro (Stripe redireciona automaticamente no sucesso)
+    if (error) {
+      setLoading(btn, false, 'Confirmar assinatura');
+      showErr(errEl, error.message);
+    }
+  };
+
+  // ── Voltar para step 1 ──
+  window.voltarStep1 = function () {
+    document.getElementById('step2').style.display = 'none';
+    document.getElementById('step1').style.display = 'block';
+  };
+
+  // ── Helpers ──
+  function showErr(el, msg) {
+    el.innerHTML = msg;
+    el.style.display = 'block';
+  }
+  function hideErr(el) {
+    el.style.display = 'none';
+    el.innerHTML = '';
+  }
+  function setLoading(btn, loading, html) {
+    btn.disabled = loading;
+    btn.innerHTML = html;
+  }
+})();
+</script>
+
+</body>
+</html>
